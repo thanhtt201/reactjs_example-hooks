@@ -1,0 +1,3 @@
++ memo() -> Higher Order Component (Component bậc cao -> ôm 1 component)
+    - memo() giúp 1 component tránh bị re-render lại ko cần thiết
+    - nếu props truyền vào từ cha bị thay đổi thì sẽ re-render lại component đó

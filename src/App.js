@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCallback, useMemo, useState } from "react";
+import './index.css'
+import UserCallbackHooks from "./components/UseCallbackHooks";
+import MemoHOC from "./components/MemoHOC";
 
 function App() {
+  const [name, setName] = useState('')
+  const [price, SetPrice] = useState('')
+
+  const handleInputName = (e) => {
+    setName(e.target.value)
+  }
+
+  const handleInputPrice = useCallback((e) => {
+    SetPrice(e.target.value)
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Name: {name}</p>
+      <p>Price: {price}</p>
+      <MemoHOC name={name} />
+      <div></div>
+      <input type="text" value={name} placeholder="name" onChange={handleInputName} />
+      <UserCallbackHooks price={price} handleInputPrice={handleInputPrice} />
     </div>
   );
 }
